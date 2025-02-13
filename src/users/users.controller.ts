@@ -34,5 +34,25 @@ export class UsersController {
     return this.usersService.findOne(username);
   }
 
+  @UseGuards(AuthGuard('jwt'))
+  @Patch(':id')
+  async update(@Param('id')id: string,@Body() updateUserDto: UpdateUserDto) {
+    const updatedUser = await this.usersService.update(+id, updateUserDto);
+    if (!updatedUser) {
+      return { message: 'User not found' };
+    }
+    return updatedUser;
+  }
+
+  @UseGuards(AuthGuard('jwt')) // Protect route
+  @Delete(':id')
+  async remove(@Param('id') id: string) {
+    const deleted = await this.usersService.remove(+id);
+    if (!deleted) {
+      return { message: 'User not found or already deleted' };
+    }
+    return { message: 'User deleted successfully' };
+  }
+
  
 }
