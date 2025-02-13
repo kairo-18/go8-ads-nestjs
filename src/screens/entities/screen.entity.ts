@@ -17,6 +17,9 @@ export class Screen {
     @Column()
     routeName: string;
 
+    @Column()
+    layoutType: string;
+
     @CreateDateColumn()
     createdAt: Date;
 
