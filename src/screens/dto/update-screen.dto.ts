@@ -5,6 +5,6 @@ import { CreateAdsDto } from './create-ads.dto';
 export class UpdateScreenDto {
     name: string;
     routeName: string;
-
+    layoutType: string;
     ads: CreateAdsDto[];
 }

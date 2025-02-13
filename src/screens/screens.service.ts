@@ -51,6 +51,7 @@ export class ScreensService {
     if (screen) {
       screen.name = updateScreenDto.name;
       screen.routeName = updateScreenDto.routeName;
+      screen.layoutType = updateScreenDto.layoutType;
 
       const ads = updateScreenDto.ads.map(
         (createAdsDto) => new Ads(createAdsDto),
