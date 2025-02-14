@@ -6,11 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { ScreensService } from './screens.service';
 import { CreateScreenDto } from './dto/create-screen.dto';
 import { UpdateScreenDto } from './dto/update-screen.dto';
-import { Ads } from './entities/ads.entity';
 import { CreateAdsDto } from './dto/create-ads.dto';
 import { UpdateAdsDto } from './dto/update-ads-dto';
 
@@ -24,6 +25,7 @@ export class ScreensController {
   }
 
   @Get()
+  @UseGuards(AuthGuard('jwt')) 
   findAll() {
     return this.screensService.findAll();
   }
@@ -33,12 +35,13 @@ export class ScreensController {
     return this.screensService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Patch(':id') // Protect update screen
   update(@Param('id') id: string, @Body() updateScreenDto: UpdateScreenDto) {
     return this.screensService.update(+id, updateScreenDto);
   }
 
   @Delete(':id')
+  @UseGuards(AuthGuard('jwt')) // Protect delete screen
   remove(@Param('id') id: string) {
     return this.screensService.remove(+id);
   }
@@ -49,6 +52,7 @@ export class ScreensController {
   }
 
   @Patch(':screenId/ads/:adId')
+  @UseGuards(AuthGuard('jwt')) // Protect update ad
   updateAd(
     @Param('screenId') screenId: number,
     @Param('adId') adId: number,
@@ -58,8 +62,8 @@ export class ScreensController {
   }
 
   @Delete(':screenId/ads/:adId')
+  @UseGuards(AuthGuard('jwt')) // Protect delete ad
   removeAd(@Param('screenId') screenId: number, @Param('adId') adId: number) {
     return this.screensService.removeAd(+screenId, +adId);
   }
-
 }
