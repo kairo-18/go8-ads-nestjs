@@ -132,7 +132,6 @@ export class ScreensService {
     if (!ad) {
       throw new NotFoundException('Ad not found');
     }
-
     // Remove the Ad from the screen
     screen.ads = screen.ads.filter((a) => a.id !== ad.id);
 
