@@ -8,6 +8,7 @@ import { AdsUploadModule } from './adsUpload/adsUpload.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { AnnouncementsModule } from './announcements/announcements.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
