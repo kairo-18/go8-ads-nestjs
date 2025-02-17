@@ -13,6 +13,12 @@ export class Ads {
     @Column()
     mediaUrl: string;
 
+    @Column()
+    duration: number;
+
+    @Column()
+    slot: string;
+
     @CreateDateColumn()
     startDate: Date;
 
