@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable, CreateDateColumn } from 'typeorm';
+import { Screen } from 'src/screens/entities/screen.entity';
 
 @Entity()
 export class Announcement {
@@ -25,4 +26,8 @@ export class Announcement {
 
   @Column({ default: false })  // New field to track active status
   active: boolean;
+
+  @ManyToMany(() => Screen, (screen) => screen.announcements, { cascade: true })
+  @JoinTable()
+  screens: Screen[];  
 }
