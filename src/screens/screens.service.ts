@@ -68,7 +68,7 @@ export class ScreensService {
     this.entityManager.delete(Screen, id);
   }
 
-  async addAdToScreen(screenId: number, adDto: CreateAdsDto) {
+  async addAdToScreen(screenId: number, adDtos: CreateAdsDto | CreateAdsDto[]) {
     const screen = await this.screenRepository.findOne({
       where: { id: screenId },
       relations: { ads: true },
@@ -78,12 +78,19 @@ export class ScreensService {
       return 'Screen not found';
     }
 
-    // Create a new Ad or fetch existing one if needed
-    const newAd = new Ads(adDto);
-    await this.entityManager.save(newAd);
+    // If adDtos is a single ad, convert it to an array to simplify the logic
+    const adsArray = Array.isArray(adDtos) ? adDtos : [adDtos];
 
-    // Append the new Ad instead of replacing
-    screen.ads.push(newAd);
+    // Create and save each ad
+    const newAds: Ads[] = [];
+    for (const adDto of adsArray) {
+      const newAd = new Ads(adDto);
+      await this.entityManager.save(newAd); // Save each new ad individually
+      newAds.push(newAd);
+    }
+
+    // Append the new ads to the screen's ads array
+    screen.ads.push(...newAds);
 
     // Save the updated screen
     await this.entityManager.save(screen);
@@ -145,5 +152,5 @@ export class ScreensService {
     };
   }
 
-  
+
 }
