@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Ads } from './ads.entity';
+import { Announcement } from 'src/announcements/entities/announcement.entity';
 
 @Entity()
 export class Screen {
@@ -26,4 +27,7 @@ export class Screen {
     @ManyToMany(() => Ads, {cascade: true})
     @JoinTable()
     ads: Ads[];
+
+    @ManyToMany(() => Announcement, (announcement) => announcement.screens)
+    announcements: Announcement[];
 }
