@@ -42,7 +42,6 @@ export class AnnouncementsController {
   async deactivate(@Param('id') id: string) {
     return this.announcementsService.markAsInactive(+id);
   }
-  
 
   @Delete(':id')
   async remove(@Param('id') id: string) {

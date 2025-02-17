@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsInt, Min, IsBoolean } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsInt, Min, IsBoolean, IsArray } from 'class-validator';
 
 export class CreateAnnouncementDto {
   @IsString()
@@ -24,4 +24,8 @@ export class CreateAnnouncementDto {
   @IsBoolean()
   @IsOptional()
   active?: boolean = true; // Default to active
+
+  @IsOptional()
+  @IsArray()
+  screenIds?: number[];
 }
