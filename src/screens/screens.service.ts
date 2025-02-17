@@ -19,7 +19,7 @@ export class ScreensService {
     private readonly entityManager: EntityManager,
   ) {}
 
-  create(createScreenDto: CreateScreenDto) {
+  async create(createScreenDto: CreateScreenDto) {
     const ads = createScreenDto.ads.map(
       (createAdsDto) => new Ads(createAdsDto),
     );
@@ -28,8 +28,8 @@ export class ScreensService {
       ...createScreenDto,
       ads,
     });
-    this.entityManager.save(screen);
-    return 'This action adds a new screen';
+    const savedScreen = await this.entityManager.save(screen);
+    return savedScreen;
   }
 
   async findAll() {
