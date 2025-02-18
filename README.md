@@ -1,15 +1,16 @@
-git clone https://github.com/kairo-18/go8-ads-nestjs
+## Prerequisites
+- docker (optional)
+- git 
+- node js - 20.11.1
 
+## Getting Started
 
-cd go8-ads-nestjs
-
-
-npm install
-
-
-docker-compose up
-
-setup the .env
+- `git clone https://github.com/kairo-18/go8-ads-nestjs`
+- `cd go8-ads-nestjs`
+- `npm install`
+- `docker-compose up` (optional), install & setup postgres
+- `setup the .env`
+```.env
 
 DB_HOST= 127.0.0.1
 POSTGRES_DB= postgres
@@ -18,11 +19,10 @@ DB_USERNAME=
 DB_PASSWORD= 
 DB_NAME= go8Nest
 
-npm run start:dev
+```
+- `npm run start:dev`
 
-
-docs
-
+ 
 # API Documentation
 
 ## Users Endpoints
