@@ -11,6 +11,13 @@ docker-compose up
 
 setup the .env
 
+DB_HOST= 127.0.0.1
+POSTGRES_DB= postgres
+DB_PORT= 5434
+DB_USERNAME= 
+DB_PASSWORD= 
+DB_NAME= go8Nest
+
 npm run start:dev
 
 
