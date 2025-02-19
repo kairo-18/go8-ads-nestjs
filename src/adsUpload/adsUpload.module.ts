@@ -11,7 +11,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         }),
         ServeStaticModule.forRoot({
             rootPath: join(process.cwd(), 'uploads'), // Serve from the project root
-            serveRoot: '/uploads', // Accessible at http://localhost:3000/uploads
+            serveRoot: '/api/uploads', // Accessible at http://localhost:3000/uploads
         })
     ],
     controllers: [AdsUploadController],
