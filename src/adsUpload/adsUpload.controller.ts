@@ -29,7 +29,7 @@ export class AdsUploadController {
     return {
         statusCode: 200,
         message: 'File uploaded successfully',
-        fileUrl: `http://localhost:3000/uploads/${ads.filename}` // Return full file URL
+        fileUrl: `/api/uploads/${ads.filename}` // Return full file URL
     };
     }
 }
