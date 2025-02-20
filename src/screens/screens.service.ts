@@ -7,6 +7,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Ads } from './entities/ads.entity';
 import { CreateAdsDto } from './dto/create-ads.dto';
 import { UpdateAdsDto } from './dto/update-ads-dto';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class ScreensService {
@@ -148,6 +149,33 @@ export class ScreensService {
 
     return {
       message: 'Ad removed successfully',
+      screen,
+    };
+  }
+
+
+  //Assign a user to a screen
+  async assignUser(screenId: number, userId: number) {
+    const screen = await this.screenRepository.findOne({
+      where: { id: screenId },
+      relations: ['user'],
+    });
+
+    if (!screen) {
+      throw new NotFoundException('Screen not found');
+    }
+
+    const user = await this.entityManager.findOne(User, { where: { id: userId } });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    screen.user = user;
+    await this.entityManager.save(screen);
+
+    return {
+      message: 'User assigned to screen successfully',
       screen,
     };
   }

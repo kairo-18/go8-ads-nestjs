@@ -66,4 +66,11 @@ export class ScreensController {
   removeAd(@Param('screenId') screenId: number, @Param('adId') adId: number) {
     return this.screensService.removeAd(+screenId, +adId);
   }
+
+  //assign a user to a screen
+  @Patch(':screenId/user/:userId')
+  @UseGuards(AuthGuard('jwt')) // Protect assign user
+  assignUser(@Param('screenId') screenId: number, @Param('userId') userId: number) {
+    return this.screensService.assignUser(+screenId, +userId);
+  }
 }
