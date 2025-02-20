@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Screen } from '../../screens/entities/screen.entity';
 
 export enum UserRole {
   TV1 = 'tv1',
@@ -20,4 +21,8 @@ export class User {
 
   @Column({ type: 'enum', enum: UserRole, default: UserRole.TV1 })
   role: UserRole;
+
+  @OneToOne(() => Screen, (screen) => screen.user, { cascade: true })
+  @JoinColumn()
+  screen: Screen;
 }

@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Ads } from './ads.entity';
 import { Announcement } from 'src/announcements/entities/announcement.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Entity()
 export class Screen {
@@ -30,4 +31,7 @@ export class Screen {
 
     @ManyToMany(() => Announcement, (announcement) => announcement.screens)
     announcements: Announcement[];
+
+    @OneToOne(() => User, (user) => user.screen)
+    user: User;
 }
