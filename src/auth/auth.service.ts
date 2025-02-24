@@ -27,7 +27,7 @@ export class AuthService {
 
     const payload = { username: user.username, sub: user.id };
     return {
-      routeName: user.screen?.routeName ?? null, // Ensures routeName is nullable
+      routeName: user.screen?.routeName ?? null, 
       userId: user.id,
       userRole: user.role,
       access_token: this.jwtService.sign(payload)

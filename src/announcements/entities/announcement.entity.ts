@@ -30,4 +30,9 @@ export class Announcement {
   @ManyToMany(() => Screen, (screen) => screen.announcements, { cascade: true })
   @JoinTable()
   screens: Screen[];  
+
+  
+  @Column()
+  announcementType: string;
+
 }
