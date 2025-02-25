@@ -27,7 +27,12 @@ export class Announcement {
   @Column({ default: false })  // New field to track active status
   active: boolean;
 
-  @ManyToMany(() => Screen, (screen) => screen.announcements, { cascade: true })
+  @ManyToMany(() => Screen, (screen) => screen.announcements, )
   @JoinTable()
   screens: Screen[];  
+
+  
+  @Column()
+  announcementType: string;
+
 }

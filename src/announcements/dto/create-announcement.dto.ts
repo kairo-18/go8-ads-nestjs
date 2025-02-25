@@ -28,4 +28,8 @@ export class CreateAnnouncementDto {
   @IsOptional()
   @IsArray()
   screenIds?: number[];
+
+  @IsString()
+  @IsNotEmpty()
+  announcementType:string;
 }

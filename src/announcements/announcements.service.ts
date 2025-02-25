@@ -20,7 +20,7 @@ export class AnnouncementsService {
   ) {}
 
   async create(dto: CreateAnnouncementDto): Promise<Announcement> {
-    const { title, message, flightNumber, gate, duration, screenIds } = dto;
+    const { title, message, flightNumber, gate, duration, screenIds,announcementType } = dto;
 
     // Fetch screens based on IDs
     const screens = await this.screenRepository.findByIds(screenIds ?? []);
@@ -34,6 +34,7 @@ export class AnnouncementsService {
       duration,
       screens,
       active: true,
+      announcementType
     });
 
     const savedAnnouncement = await this.announcementRepository.save(announcement);

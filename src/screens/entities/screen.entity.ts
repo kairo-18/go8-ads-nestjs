@@ -29,9 +29,15 @@ export class Screen {
     @JoinTable()
     ads: Ads[];
 
-    @ManyToMany(() => Announcement, (announcement) => announcement.screens)
+    @ManyToMany(() => Announcement, (announcement) => announcement.screens,{
+        cascade:true,
+        onDelete:"CASCADE",
+    })
     announcements: Announcement[];
 
-    @OneToOne(() => User, (user) => user.screen)
+    @OneToOne(() => User, (user) => user.screen,{
+        cascade:true,
+        onDelete:"CASCADE"
+    })
     user: User;
 }
