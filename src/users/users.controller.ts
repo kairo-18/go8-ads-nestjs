@@ -27,6 +27,11 @@ export class UsersController {
   async findAll() {
     return this.usersService.findAll();
   }
+  @UseGuards(AuthGuard('jwt')) 
+  @Get('unassigned')
+  async getUnassignedUsers() {
+    return this.usersService.getUnassignedUsers();
+  }
 
   @UseGuards(AuthGuard('jwt')) // Protect route
   @Get(':username')
