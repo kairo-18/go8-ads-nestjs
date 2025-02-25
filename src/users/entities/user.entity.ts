@@ -22,7 +22,7 @@ export class User {
   @Column({ type: 'enum', enum: UserRole, default: UserRole.TV1 })
   role: UserRole;
 
-  @OneToOne(() => Screen, (screen) => screen.user, { cascade: true })
+  @OneToOne(() => Screen, (screen) => screen.user, {  nullable: true, onDelete: "SET NULL" })
   @JoinColumn()
   screen: Screen;
 }
