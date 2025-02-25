@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, IsNull } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -26,6 +26,13 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
+
+  async getUnassignedUsers() {
+    return this.usersRepository.find({
+        where: { screen: IsNull() }, 
+    });
+}
+
 
   async findOne(username: string): Promise<User | undefined> {
     const user = await this.usersRepository.findOne({ where: { username }, relations: ['screen'] });
